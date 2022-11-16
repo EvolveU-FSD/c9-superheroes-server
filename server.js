@@ -1,5 +1,10 @@
 import express from "express";
 
+import myConfig from 'dotenv';
+myConfig.config();
+
+import mongoose from './db/mongoose.js';
+
 const PORT = 5001;
 const app = express();
 
