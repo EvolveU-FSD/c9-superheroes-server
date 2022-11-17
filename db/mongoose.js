@@ -1,5 +1,8 @@
 import mongoose from 'mongoose';
 
+import myConfig from 'dotenv';
+myConfig.config();
+
 import DEBUG from 'debug';
 let debug = DEBUG('server:mongoose');
 debug.enabled = true;
