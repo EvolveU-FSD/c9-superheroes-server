@@ -16,6 +16,11 @@ const superheroSchema = new Schema({
 
 const Superhero = mongoose.model('Superhero', superheroSchema, 'superheroes');
 
+export const getAllSuperheroes = async () => {
+  const superheroes = await Superhero.find();
+  return superheroes;
+};
+
 export const createSuperhero = async (superhero) => {
   const newSuperhero = await Superhero.create(superhero);
   return newSuperhero;
