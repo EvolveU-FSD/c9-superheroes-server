@@ -25,3 +25,8 @@ export const createSuperhero = async (superhero) => {
   const newSuperhero = await Superhero.create(superhero);
   return newSuperhero;
 };
+
+export const getSuperheroById = async (id) => {
+  const superhero = await Superhero.findById(id);
+  return superhero;
+};
