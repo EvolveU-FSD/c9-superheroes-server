@@ -4,7 +4,11 @@ import myConfig from 'dotenv';
 myConfig.config();
 import DEBUG from 'debug';
 import superheroRouter from './routes/superheroRoutes.js';
-import { auth } from 'express-openid-connect';
+import expressOidc from 'express-openid-connect';
+
+// We have to manually destructure these because
+// `express-openid-connect` is a CommonJS module
+const { auth, requiresAuth } = expressOidc;
 
 export const debug = DEBUG('server:routes');
 debug.enabled = true;
@@ -33,7 +37,7 @@ app.get('/api/login', (req, res) =>
   res.oidc.login({ returnTo: '/superheroes' })
 );
 
-app.get('/api/profile', (req, res) => {
+app.get('/api/profile', requiresAuth(), (req, res) => {
   const profile = req.oidc.user;
   res.send(profile);
 });
@@ -45,6 +49,7 @@ app.get('/slow', (req, res) => {
     res.send({ currentTime: seconds });
   }, 3000);
 });
-app.use('/api/superhero', superheroRouter);
+
+app.use('/api/superhero', requiresAuth(), superheroRouter);
 
 app.listen(PORT, () => console.log(`Listening on ${PORT}`));
