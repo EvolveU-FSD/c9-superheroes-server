@@ -7,7 +7,7 @@ import superheroRouter from './routes/superheroRoutes.js';
 
 export const debug = DEBUG('server:routes');
 debug.enabled = true;
-const PORT = process.env.PORT || 5001;
+const PORT = 5001;
 const app = express();
 
 app.use(express.json());
