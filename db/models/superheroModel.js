@@ -30,3 +30,14 @@ export const getSuperheroById = async (id) => {
   const superhero = await Superhero.findById(id);
   return superhero;
 };
+
+export const updateSuperhero = async (id, superheroValues) => {
+  const updatedSuperhero = Superhero.findOneAndUpdate(
+    { _id: id },
+    superheroValues,
+    {
+      new: true
+    }
+  );
+  return updatedSuperhero;
+};

@@ -2,7 +2,8 @@ import { Router } from 'express';
 import {
   createSuperhero,
   getAllSuperheroes,
-  getSuperheroById
+  getSuperheroById,
+  updateSuperhero
 } from '../db/models/superheroModel.js';
 import { debug } from '../server.js';
 
@@ -40,6 +41,19 @@ router.get('/:id', async (req, res) => {
       return res.status(404).send('Invalid superhero id');
     }
     res.send(superhero);
+  } catch (error) {
+    debug(error);
+    res.status(500).send(error);
+  }
+});
+
+router.put('/:id', async (req, res) => {
+  const id = req.params.id;
+  const superheroValues = req.body;
+  try {
+    const updatedSuperhero = await updateSuperhero(id, superheroValues);
+    console.log('updatedSuperhero is', updateSuperhero);
+    res.send(updatedSuperhero);
   } catch (error) {
     debug(error);
     res.status(500).send(error);
