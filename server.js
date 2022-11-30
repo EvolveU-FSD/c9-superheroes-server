@@ -19,6 +19,7 @@ app.get('/slow', (req, res) => {
     res.send({ currentTime: seconds });
   }, 3000);
 });
+app.use('/api/superhero', superheroRouter);
 app.get('*', (req, res) => {
   res.sendFile(path.resolve('public', 'index.html'));
 });
