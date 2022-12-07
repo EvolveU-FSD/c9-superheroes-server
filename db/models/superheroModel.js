@@ -14,7 +14,11 @@ const superheroSchema = new Schema({
   }
 });
 
-const Superhero = mongoose.model('Superhero', superheroSchema, 'superheroes');
+export const Superhero = mongoose.model(
+  'Superhero',
+  superheroSchema,
+  'superheroes'
+);
 
 export const getAllSuperheroes = async () => {
   const superheroes = await Superhero.find();

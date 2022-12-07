@@ -5,7 +5,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "preload": "node initializeDb",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "testWindows": "set NODE_OPTIONS=--experimental-vm-modules && jest",
     "start": "node server.js"
   },
   "keywords": [],
@@ -18,5 +20,8 @@
     "express-openid-connect": "^2.10.0",
     "mongoose": "^6.7.2",
     "node-fetch": "^3.2.10"
+  },
+  "devDependencies": {
+    "jest": "^29.3.1"
   }
 }
