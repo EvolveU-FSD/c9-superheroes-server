@@ -6,8 +6,8 @@
   "main": "index.js",
   "scripts": {
     "preload": "node initializeDb",
-    "test": "NODE_OPTIONS=--experimental-vm-modules jest",
-    "testWindows": "set NODE_OPTIONS=--experimental-vm-modules && jest",
+    "test": "NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles",
+    "testWindows": "set NODE_OPTIONS=--experimental-vm-modules && jest --detectOpenHandles",
     "start": "node server.js"
   },
   "keywords": [],
